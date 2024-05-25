@@ -228,6 +228,71 @@ app.put('/api/helpdesk/:id', (req, res) => {
   });
 });
 
+
+app.get('/api/users', async (req, res) => {
+  const { email } = req.query;
+
+  console.log('Email recebido para busca:', email); // Log adicional
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email não fornecido' });
+  }
+
+  try {
+    const users = await readFile(usersFilePath);
+    console.log('Usuários lidos:', users); // Log adicional
+
+    const user = users.find(u => u.email === email);
+    console.log('Usuário encontrado:', user); // Log adicional
+
+    if (!user) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error('Erro ao buscar usuário:', error); // Log adicional para depuração
+    res.status(500).json({ error: 'Erro ao buscar usuário' });
+  }
+});
+
+
+// Rota para atualizar usuário por email
+app.put('/api/users', async (req, res) => {
+  const { email } = req.query;
+  const updatedData = req.body;
+
+  console.log('Email recebido para atualização:', email); // Log adicional
+  console.log('Dados recebidos para atualização:', updatedData); // Log adicional
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email não fornecido' });
+  }
+
+  try {
+    const users = await readFile(usersFilePath);
+    console.log('Usuários lidos:', users); // Log adicional
+
+    const userIndex = users.findIndex(u => u.email === email);
+
+    if (userIndex === -1) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+
+    users[userIndex] = { ...users[userIndex], ...updatedData };
+
+    await writeFile(usersFilePath, users);
+    console.log('Usuário atualizado com sucesso:', users[userIndex]); // Log adicional
+
+    res.json({ message: 'Perfil atualizado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao atualizar usuário:', error); // Log adicional para depuração
+    res.status(500).json({ error: 'Erro ao atualizar usuário' });
+  }
+});
+       
+
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

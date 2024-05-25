@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import CategoryMenu from './CategoryMenu';
+import ProfileDropdown from './ProfileDropdown';
 import './Navbar.css';
-
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -37,9 +37,9 @@ const Navbar = () => {
       <div className="navbar-icons">
         {user ? (
           <>
-          <Link to="/edit-profile" className="email-link">{user.email}</Link> {/* Adicione o Link aqui */}
-          <button onClick={handleLogout}>Logout</button>
-        </>
+            <span className="user-email">{user.email}</span>
+            <ProfileDropdown />
+          </>
         ) : (
           <Link to="/login">👤</Link>
         )}

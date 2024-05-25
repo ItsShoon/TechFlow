@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './ProfileDropdown.css';
-
 
 const ProfileDropdown = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleLogout = () => {
     logout();
@@ -18,15 +18,34 @@ const ProfileDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (dropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownOpen]);
+
   return (
-    <div className="profile-dropdown">
+    <div className="profile-dropdown" ref={dropdownRef}>
       <button onClick={toggleDropdown} className="profile-button">
-        {user.name.charAt(0).toUpperCase()}
+        👤
       </button>
       {dropdownOpen && (
         <div className="dropdown-menu">
           <Link to="/edit-profile" className="dropdown-item">Editar Perfil</Link>
-          <button onClick={handleLogout} className="dropdown-item">Logout</button>
+          <div className="separator"></div> {/* Linha de separação */}
+          <button onClick={handleLogout} className="dropdown-item">Terminar Sessão</button>
         </div>
       )}
     </div>
