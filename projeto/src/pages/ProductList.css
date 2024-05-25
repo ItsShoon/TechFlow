@@ -1,0 +1,81 @@
+.product-list-container {
+  padding: 20px;
+}
+
+.product-list-controls {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-list-controls .btn {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.product-list-filters {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.product-list-filters select,
+.product-list-filters button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.product-list-filters button.active {
+  background-color: #333;
+  color: white;
+}
+
+.product-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-list th,
+.product-list td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.product-list th {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+.product-list td .btn {
+  padding: 5px 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 5px; /* Espaço entre os botões */
+  display: inline-block;
+  line-height: 20px; /* Centralizar o texto verticalmente */
+  font-size: medium;
+}
+
+.product-list td .delete-btn {
+  background-color: #ff4d4d;
+  height: 29px;
+}
+
+.product-list td .delete-btn:hover {
+  background-color: #ff1a1a;
+}

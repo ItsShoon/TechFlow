@@ -1,0 +1,73 @@
+/* Navbar.css */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+
+.navbar-brand {
+  font-size: 1.5em;
+  margin-left: 60px;
+}
+
+.navbar-logo {
+  color: rgb(0, 155, 255);
+  text-decoration: none;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-links li {
+  display: inline;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-search {
+  margin-left: auto;
+  margin-right: 5px;
+  text-align: center;
+}
+
+.navbar-search input {
+  width: 80%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.navbar-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.cart-icon {
+  margin-right: 40px;
+}
+
+
+.email-link {
+  color: white; /* Cor do texto branca */
+  text-decoration: none; /* Remova o sublinhado */
+  transition: color 0.3s; /* Transição suave para a mudança de cor */
+}
+
+.email-link:hover {
+  color: lightgray; /* Cor do texto ao passar o mouse por cima */
+}

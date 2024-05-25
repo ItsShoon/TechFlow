@@ -1,0 +1,44 @@
+/* Helpdesk.css */
+.helpdesk-container {
+  width: 400px;
+  margin: 180px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.helpdesk-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.helpdesk-form label {
+  margin-top: 10px;
+}
+
+.helpdesk-form input,
+.helpdesk-form select,
+.helpdesk-form textarea {
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.helpdesk-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.helpdesk-buttons .check-helpdesk-button,
+.helpdesk-form button {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}

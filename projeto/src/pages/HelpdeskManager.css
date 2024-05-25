@@ -1,0 +1,115 @@
+.manage-container {
+  width: 80%; /* Reduza a largura máxima conforme necessário */
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  margin-top: 80px;
+}
+
+.helpdesk-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.helpdesk-table th,
+.helpdesk-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  max-width: 70px; /* Defina uma largura máxima para as células da tabela conforme necessário */
+  overflow: hidden; /* Se o conteúdo for maior que a largura máxima, oculte o excesso */
+  white-space: nowrap; /* Evite que o conteúdo da célula seja quebrado em várias linhas */
+  text-overflow: ellipsis; /* Adicione reticências (...) para indicar que há mais conteúdo oculto */
+  font-size: 12px; 
+}
+
+.helpdesk-table th {
+  background-color: #f2f2f2;
+}
+
+
+/* Overlay settings to center the modal */
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles specific to helpdesk modal */
+.helpdesk-modal {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px; /* Increase max-width for a wider modal */
+  width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+}
+
+.helpdesk-table tr {
+  cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+}
+
+/* Container for buttons */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  margin-top: 20px; 
+}
+
+.hdmsave-button, .hdmclose-button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px; /* Add margin to the left of the close button for spacing */
+}
+
+/* Change button width to fit the text properly */
+.hdmsave-button, .hdmclose-button {
+  width: auto;
+}
+
+.status-container,
+.notes-container {
+  margin-top: 10px;
+}
+
+.status-container label,
+.notes-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.status-container select,
+.notes-container textarea {
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.status-container label,
+.notes-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-family: Arial, sans-serif; /* Defina a fonte desejada aqui */
+  font-weight: bold;
+}
+

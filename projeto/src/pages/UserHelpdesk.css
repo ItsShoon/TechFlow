@@ -1,0 +1,42 @@
+.user-helpdesk-container {
+    width: 80%; /* Reduza a largura máxima conforme necessário */
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-top: 80px;
+  }
+  
+  .helpdesk-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .helpdesk-table th,
+  .helpdesk-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    max-width: 70px; /* Defina uma largura máxima para as células da tabela conforme necessário */
+    overflow: hidden; /* Se o conteúdo for maior que a largura máxima, oculte o excesso */
+    white-space: nowrap; /* Evite que o conteúdo da célula seja quebrado em várias linhas */
+    text-overflow: ellipsis; /* Adicione reticências (...) para indicar que há mais conteúdo oculto */
+    font-size: 12px; 
+  }
+  
+  .helpdesk-table th {
+    background-color: #f2f2f2;
+  }
+
+  .helpdesk-table tr {
+    cursor: default; /* ou remova completamente esta linha */
+  }
+  
+
+  
+  
+  
+  
+  
+  

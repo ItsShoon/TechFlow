@@ -1,0 +1,101 @@
+.manage-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.tab-link {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.tab-link.active {
+  background-color: #007bff;
+}
+
+.manage-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.manage-form label {
+  margin-top: 10px;
+}
+
+.manage-form input,
+.manage-form select,
+.manage-form textarea {
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.manage-form button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.product-table th {
+  background-color: #333; /* Cor de fundo dos cabeçalhos */
+  color: white;
+}
+
+.product-table td {
+  background-color: #f2f2f2; /* Cor mais clara para células */
+  color: #333; /* Cor do texto para as células */
+}
+
+.preview-image {
+  max-width: 100px;
+  margin-top: 10px;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.filter-container label {
+  margin-bottom: 5px;
+}
+
+.filter-container select {
+  margin-bottom: 10px;
+}
+
+.manufacturer-filter {
+  display: flex;
+  flex-direction: column;
+}
+
+.manufacturer-filter div {
+  margin-bottom: 5px;
+}
