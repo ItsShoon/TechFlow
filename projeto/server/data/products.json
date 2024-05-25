@@ -1,0 +1,11 @@
+[
+  {
+    "name": "Teste",
+    "category": "Motherboards",
+    "manufacturer": "Asus",
+    "price": 150,
+    "stock": 12,
+    "image": null,
+    "id": 1
+  }
+]

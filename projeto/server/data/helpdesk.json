@@ -1,0 +1,58 @@
+[
+  {
+    "id": "c9f8pddk2",
+    "helpdeskType": "Suporte Técnico",
+    "equipment": "Computador",
+    "invoiceNumber": "lgf10",
+    "description": "test1",
+    "email": "gestor@techflow.pt",
+    "status": "Concluído",
+    "currentDate": "21/05/2024",
+    "notes": "teste andamento",
+    "lastUpdatedDate": "23/05/2024"
+  },
+  {
+    "helpdeskType": "Reclamações",
+    "equipment": "Tablet",
+    "invoiceNumber": "lgf11",
+    "description": "test2",
+    "email": "gestor@techflow.pt",
+    "status": "Concluído",
+    "id": "3jzq7b13v",
+    "currentDate": "20/05/2024",
+    "notes": "enviado para reparação",
+    "lastUpdatedDate": "23/05/2024"
+  },
+  {
+    "helpdeskType": "Informações",
+    "equipment": "Smartphone",
+    "invoiceNumber": "lgf12",
+    "description": "teste3",
+    "email": "gestor@techflow.pt",
+    "status": "Concluído",
+    "id": "nq6pyw55c",
+    "currentDate": "22/05/2024",
+    "notes": "teste concluido",
+    "lastUpdatedDate": "23/05/2024"
+  },
+  {
+    "id": "92ylcev4i",
+    "helpdeskType": "Suporte Técnico",
+    "equipment": "Smartphone",
+    "invoiceNumber": "wwwww",
+    "description": "wwwww",
+    "email": "andre.fontes7331@gmail.com",
+    "status": "Pendente",
+    "currentDate": "23/05/2024"
+  },
+  {
+    "id": "arwpnuquo",
+    "helpdeskType": "Suporte Técnico",
+    "equipment": "Computador",
+    "invoiceNumber": "etee",
+    "description": "teste",
+    "email": "gestor@techflow.pt",
+    "status": "Pendente",
+    "currentDate": "23/05/2024"
+  }
+]
