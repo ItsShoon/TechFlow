@@ -128,6 +128,7 @@ const App = () => {
           <Route path="/configurator" element={<Configurator />} />
           <Route path="/user-helpdesk" element={<UserHelpdesk />} /> 
           <Route path="/edit-profile" element={<EditProfile />} /> 
+          
         </Routes>
       </Router>
     </AuthProvider>

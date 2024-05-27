@@ -7,7 +7,18 @@
     "postalCode": "4720-527",
     "city": "Braga",
     "phone": "935452266",
-    "password": "andre123",
-    "role": "user"
+    "password": "andre1",
+    "role": "user",
+    "confirmPassword": "andre1"
+  },
+  {
+    "name": "Nuno",
+    "email": "nuno@nuno.pt",
+    "nif": "123456789",
+    "address": "rua abc",
+    "postalCode": "4835-550",
+    "city": "Guimarães",
+    "phone": "913422991",
+    "password": "nuno123"
   }
 ]

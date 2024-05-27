@@ -6,10 +6,10 @@
     "invoiceNumber": "lgf10",
     "description": "test1",
     "email": "gestor@techflow.pt",
-    "status": "Concluído",
+    "status": "Em Andamento",
     "currentDate": "21/05/2024",
     "notes": "teste andamento",
-    "lastUpdatedDate": "23/05/2024"
+    "lastUpdatedDate": "25/05/2024"
   },
   {
     "helpdeskType": "Reclamações",
@@ -54,5 +54,15 @@
     "email": "gestor@techflow.pt",
     "status": "Pendente",
     "currentDate": "23/05/2024"
+  },
+  {
+    "id": "866i1fsn1",
+    "helpdeskType": "Suporte Técnico",
+    "equipment": "Smartphone",
+    "invoiceNumber": "ww",
+    "description": "www",
+    "email": "nuno@nuno.pt",
+    "status": "Pendente",
+    "currentDate": "25/05/2024"
   }
 ]

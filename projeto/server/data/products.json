@@ -4,8 +4,18 @@
     "category": "Motherboards",
     "manufacturer": "Asus",
     "price": 150,
-    "stock": 12,
+    "stock": 13,
     "image": null,
     "id": 1
+  },
+  {
+    "id": 2,
+    "name": "Rog 123x",
+    "category": "Processadores",
+    "price": 14,
+    "stock": 2,
+    "manufacturer": "Asus",
+    "description": "xpto",
+    "image": null
   }
 ]
