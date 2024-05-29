@@ -1,78 +1,60 @@
-.manage-container {
-  width: 500px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-  margin-top: 80px;
-}
-
-.manage-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.manage-form label {
-  margin-top: 10px;
-}
-
-.manage-form input,
-.manage-form select {
-  padding: 5px;
-  margin-top: 5px;
-}
-
-.manage-form button {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #333;
+.btn-add-campaign {
+  background-color: #555;
   color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 16px;
 }
 
-.manage-form img.preview-image {
+.btn-add-campaign:hover {
+  background-color: #333;
+}
+
+.btn-submit-campaign {
+  background-color: #555;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   margin-top: 10px;
-  max-width: 100px;
+  font-size: 16px;
 }
 
-.tab-container {
-  display: flex;
-  justify-content: space-between;
+.btn-submit-campaign:hover {
+  background-color: #333;
+}
+
+.manage-container {
+  padding: 20px;
+}
+
+.manage-form {
   margin-bottom: 20px;
 }
 
-.tab-link {
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.tab-link.active {
-  background-color: #555;
-}
-
-.product-table,
 .campaign-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-.product-table th,
-.product-table td,
-.campaign-table th,
-.campaign-table td {
+.campaign-table th, .campaign-table td {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.product-table th,
 .campaign-table th {
   background-color: #f2f2f2;
+  text-align: left;
 }
+
+.checkbox-active {
+  margin-left: 10px;
+  transform: scale(1.5);
+}
+
+

@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "name": "Teste ",
+    "discount": 12,
+    "startDate": "2024-05-10",
+    "endDate": "2024-05-11",
+    "isActive": true,
+    "id": 1
+  },
+  {
+    "name": "Black Friday ",
+    "discount": 15,
+    "startDate": "2024-05-17",
+    "endDate": "2024-05-20",
+    "isActive": true,
+    "id": 2
+  }
+]

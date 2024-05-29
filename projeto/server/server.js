@@ -291,7 +291,9 @@ app.put('/api/users', async (req, res) => {
   }
 });
        
-
+// Importar e usar as rotas de campanhas
+const campaignRoutes = require('./routes/campaigns');
+app.use('/api/campaigns', campaignRoutes);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
