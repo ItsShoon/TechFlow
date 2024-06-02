@@ -2,14 +2,14 @@
   {
     "name": "André Freitas",
     "email": "andre.fontes7331@gmail.com",
-    "nif": "241909252",
+    "nif": "241909211",
     "address": "Avenida de Santa Marta 382",
     "postalCode": "4720-527",
     "city": "Braga",
     "phone": "935452266",
-    "password": "andre1",
+    "password": "",
     "role": "user",
-    "confirmPassword": "andre1"
+    "confirmPassword": ""
   },
   {
     "name": "Nuno",
