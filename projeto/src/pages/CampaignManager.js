@@ -81,7 +81,7 @@ const CampaignManager = () => {
             Ativa:
             <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} className="checkbox-active" />
           </label>
-          <button type="submit" className="btn-submit-campaign">Adicionar Campanha</button>
+          <button type="submit" className="btn-submit-campaign-2">Adicionar Campanha</button>
         </form>
       )}
       <h3>Campanhas Existentes</h3>
