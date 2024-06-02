@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './ProductManager.css';
 
 const categories = [
@@ -58,9 +57,9 @@ const ProductManager = ({ products = [], onAddProduct }) => {
   };
 
   return (
-    <div className="manage-container">
+    <div className="product-manage-container">
       <h2>Adicionar Produto</h2>
-      <form className="manage-form" onSubmit={handleAddProduct}>
+      <form className="product-manage-form" onSubmit={handleAddProduct}>
         <label>Nome:</label>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
         

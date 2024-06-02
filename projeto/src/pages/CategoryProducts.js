@@ -7,18 +7,18 @@ const CategoryProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    const fetchProductsByCategory = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/products/category/${category}`);
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
     fetchProductsByCategory();
   }, [category]);
-
-  const fetchProductsByCategory = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/products/category/${category}`);
-      const data = await response.json();
-      setProducts(data);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    }
-  };
 
   return (
     <div className="category-products-container">
@@ -30,7 +30,7 @@ const CategoryProducts = () => {
               <h3>{product.name}</h3>
               <p>{product.manufacturer}</p>
               <p>{product.price}€</p>
-              <p>Stock: {product.stock}</p>
+              <p>{product.description}</p>
             </div>
             <button className="btn">Adicionar ao Carrinho</button>
             <button className="btn buy-now">Comprar Já</button>
