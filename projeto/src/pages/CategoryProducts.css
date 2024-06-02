@@ -32,7 +32,7 @@
   
   .product-card h3 {
     margin: 10px 0;
-    min-height: 48px; /* Ajuste conforme necessário para o número médio de linhas */
+    min-height: 48px;
   }
   
   .product-card p {
