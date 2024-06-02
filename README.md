@@ -15,6 +15,8 @@ Project for WEB Programming
 * npm install react-modal
 
 * npm install react-responsive-carousel
+  
+* npm install multer (NOVO)
 
 2.cd server
 

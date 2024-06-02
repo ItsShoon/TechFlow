@@ -17,7 +17,7 @@ const categories = [
 
 const ProductManager = ({ products = [], onAddProduct }) => {
   const [name, setName] = useState('');
-  const [category, setCategory] = useState(categories[0]);
+  const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
   const [stock, setStock] = useState('');
   const [manufacturer, setManufacturer] = useState('');
@@ -36,12 +36,9 @@ const ProductManager = ({ products = [], onAddProduct }) => {
       description,
       image
     };
-
-
-    
     onAddProduct(newProduct);
     setName('');
-    setCategory(categories[0]);
+    setCategory('');
     setPrice('');
     setStock('');
     setManufacturer('');
@@ -66,23 +63,31 @@ const ProductManager = ({ products = [], onAddProduct }) => {
       <form className="manage-form" onSubmit={handleAddProduct}>
         <label>Nome:</label>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+        
         <label>Categoria:</label>
         <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+          <option value="">Selecione uma categoria</option>
           {categories.map((cat, index) => (
             <option key={index} value={cat}>{cat}</option>
           ))}
         </select>
-        <label>Fabricante:</label>
-        <input type="text" value={manufacturer} onChange={(e) => setManufacturer(e.target.value)} required />
+        
         <label>Preço:</label>
         <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required />
+        
         <label>Stock:</label>
         <input type="number" value={stock} onChange={(e) => setStock(e.target.value)} required />
+        
+        <label>Fabricante:</label>
+        <input type="text" value={manufacturer} onChange={(e) => setManufacturer(e.target.value)} required />
+        
         <label>Descrição:</label>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
+        <textarea value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
+        
         <label>Imagem:</label>
         <input type="file" accept="image/*" onChange={handleImageChange} />
         {image && <img src={image} alt="Product" className="preview-image" />}
+        
         <button type="submit">Adicionar Produto</button>
       </form>
     </div>
