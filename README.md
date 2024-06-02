@@ -16,7 +16,7 @@ Project for WEB Programming
 
 * npm install react-responsive-carousel
   
-* npm install multer (novo)
+* npm install multer (NOVO)
 
 2.cd server
 
