@@ -2,15 +2,28 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const multer = require('multer');
 
 const app = express();
 const port = 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
 const usersFilePath = path.join(__dirname, 'data', 'users.json');
 const productsFilePath = path.join(__dirname, 'data', 'products.json');
+
+// Configuração do multer para upload de imagens
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images/products');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage: storage });
 
 // Função para ler arquivos JSON
 const readFile = (filePath) => {
@@ -97,8 +110,12 @@ app.get('/api/products/category/:category', async (req, res) => {
   }
 });
 
-app.post('/api/products', async (req, res) => {
+// Rota para adicionar um novo produto com upload de imagem
+app.post('/api/products', upload.single('image'), async (req, res) => {
   const newProduct = req.body;
+  if (req.file) {
+    newProduct.image = `/images/products/${req.file.filename}`;
+  }
   try {
     const products = await readFile(productsFilePath);
     newProduct.id = products.length + 1;

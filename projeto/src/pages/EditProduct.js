@@ -11,6 +11,7 @@ const EditProduct = ({ products, onUpdateProduct }) => {
   const [manufacturer, setManufacturer] = useState('');
   const [price, setPrice] = useState('');
   const [stock, setStock] = useState('');
+  const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const EditProduct = ({ products, onUpdateProduct }) => {
       setManufacturer(productToEdit.manufacturer);
       setPrice(productToEdit.price);
       setStock(productToEdit.stock);
+      setDescription(productToEdit.description);
       setImage(productToEdit.image);
     }
   }, [id, products]);
@@ -35,6 +37,7 @@ const EditProduct = ({ products, onUpdateProduct }) => {
       manufacturer,
       price: parseFloat(price),
       stock: parseInt(stock),
+      description,
       image
     };
     onUpdateProduct(updatedProduct);
@@ -58,17 +61,26 @@ const EditProduct = ({ products, onUpdateProduct }) => {
       <form className="edit-product-form" onSubmit={handleUpdateProduct}>
         <label>Nome:</label>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+        
         <label>Categoria:</label>
         <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} required />
+        
         <label>Fabricante:</label>
         <input type="text" value={manufacturer} onChange={(e) => setManufacturer(e.target.value)} required />
+        
         <label>Preço:</label>
         <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required />
+        
         <label>Stock:</label>
         <input type="number" value={stock} onChange={(e) => setStock(e.target.value)} required />
+        
+        <label>Descrição:</label>
+        <textarea value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
+        
         <label>Imagem:</label>
         <input type="file" accept="image/*" onChange={handleImageChange} />
         {image && <img src={image} alt="Product" className="preview-image" />}
+        
         <button type="submit">Atualizar Produto</button>
       </form>
     </div>
