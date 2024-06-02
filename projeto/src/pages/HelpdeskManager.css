@@ -1,4 +1,4 @@
-.manage-container {
+.hdm-manage-container {
   width: 80%; /* Reduza a largura máxima conforme necessário */
   margin: auto;
   padding: 20px;
@@ -109,7 +109,7 @@ textarea {
 .notes-container label {
   display: block;
   margin-bottom: 5px;
-  font-family: Arial, sans-serif; /* Defina a fonte desejada aqui */
+  font-family: Arial, sans-serif; 
   font-weight: bold;
 }
 

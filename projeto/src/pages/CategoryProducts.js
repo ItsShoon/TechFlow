@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import useCart from '../hooks/useCart'; 
 import './CategoryProducts.css';
 
 const CategoryProducts = () => {
   const { category } = useParams();
   const [products, setProducts] = useState([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetchProductsByCategory();
@@ -20,6 +22,12 @@ const CategoryProducts = () => {
     }
   };
 
+  const handleAddToCart = (product) => {
+    console.log('Adding to cart:', product);
+    const cartItem = { id: product.id, name: product.name, price: product.price }; 
+    addToCart(cartItem);
+  };
+
   return (
     <div className="category-products-container">
       <div className="product-grid">
@@ -32,7 +40,7 @@ const CategoryProducts = () => {
               <p>{product.price}€</p>
               <p>Stock: {product.stock}</p>
             </div>
-            <button className="btn">Adicionar ao Carrinho</button>
+            <button className="btn" onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</button>
             <button className="btn buy-now">Comprar Já</button>
           </div>
         ))}

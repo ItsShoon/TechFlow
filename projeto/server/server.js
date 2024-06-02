@@ -13,6 +13,7 @@ app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
 const usersFilePath = path.join(__dirname, 'data', 'users.json');
 const productsFilePath = path.join(__dirname, 'data', 'products.json');
+const cartFilePath = path.join(__dirname, 'data', 'cart.json');
 
 // Configuração do multer para upload de imagens
 const storage = multer.diskStorage({
@@ -307,8 +308,74 @@ app.put('/api/users', async (req, res) => {
     res.status(500).json({ error: 'Erro ao atualizar usuário' });
   }
 });
-       
 
+
+// Rota para obter o carrinho do usuário
+app.post('/api/cart/get', async (req, res) => {
+  const { userEmail } = req.body;
+  try {
+    const carts = await readFile(cartFilePath);
+    const userCart = carts[userEmail] || [];
+    res.json(userCart);
+  } catch (error) {
+    console.error('Error reading cart:', error);
+    res.status(500).json({ error: 'Erro ao ler dados do carrinho' });
+  }
+});
+
+// Rota para adicionar um item ao carrinho do usuário
+app.post('/api/cart/add', async (req, res) => {
+  const { userEmail, item } = req.body;
+  try {
+    const carts = await readFile(cartFilePath);
+    const userCart = carts[userEmail] || [];
+    const existingItem = userCart.find(cartItem => cartItem.id === item.id);
+
+    if (existingItem) {
+      existingItem.quantity += item.quantity;
+    } else {
+      userCart.push(item);
+    }
+
+    carts[userEmail] = userCart;
+    await writeFile(cartFilePath, carts);
+    res.status(201).json(userCart);
+  } catch (error) {
+    console.error('Error adding item to cart:', error);
+    res.status(500).json({ error: 'Erro ao adicionar item ao carrinho' });
+  }
+});
+
+// Rota para remover um item do carrinho do usuário
+app.post('/api/cart/remove', async (req, res) => {
+  const { userEmail, itemId } = req.body;
+  try {
+    const carts = await readFile(cartFilePath);
+    const userCart = carts[userEmail] || [];
+    const updatedCart = userCart.filter(item => item.id !== itemId);
+
+    carts[userEmail] = updatedCart;
+    await writeFile(cartFilePath, carts);
+    res.status(200).json(updatedCart);
+  } catch (error) {
+    console.error('Error removing item from cart:', error);
+    res.status(500).json({ error: 'Erro ao remover item do carrinho' });
+  }
+});
+
+// Rota para limpar o carrinho do usuário
+app.post('/api/cart/clear', async (req, res) => {
+  const { userEmail } = req.body;
+  try {
+    const carts = await readFile(cartFilePath);
+    carts[userEmail] = [];
+    await writeFile(cartFilePath, carts);
+    res.status(200).json([]);
+  } catch (error) {
+    console.error('Error clearing cart:', error);
+    res.status(500).json({ error: 'Erro ao limpar o carrinho' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
