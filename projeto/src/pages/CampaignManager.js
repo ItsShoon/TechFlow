@@ -63,12 +63,12 @@ const CampaignManager = () => {
   };
 
   return (
-    <div className="manage-container">
+    <div className="campaign-container">
       <button className="btn-add-campaign" onClick={toggleFormVisibility}>
         {showForm ? 'Fechar Formulário' : 'Adicionar Campanha'}
       </button>
       {showForm && (
-        <form className="manage-form" onSubmit={handleAddCampaign}>
+        <form className="manage-form-campaign" onSubmit={handleAddCampaign}>
           <label>Nome:</label>
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
           <label>Desconto (%):</label>

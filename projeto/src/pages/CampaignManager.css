@@ -24,16 +24,46 @@
   font-size: 16px;
 }
 
-.btn-submit-campaign:hover {
+.btn-submit-campaign-2:hover {
   background-color: #333;
 }
 
-.manage-container {
+.campaign-container {
+  width: 80%; /* Reduza a largura máxima conforme necessário */
+  margin: auto;
   padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  margin-top: 80px;
 }
 
-.manage-form {
+.manage-form-campaign {
+  display: flex;
+  flex-direction: column;
+}
+
+.manage-form-campaign label {
+  margin-top: 10px;
+}
+
+.manage-form-campaign input,
+.manage-form-campaign select,
+.manage-form-campaign textarea {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.manage-form-campaign {
   margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
 }
 
 .campaign-table {
