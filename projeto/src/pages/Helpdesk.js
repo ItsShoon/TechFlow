@@ -11,7 +11,7 @@ const Helpdesk = () => {
   const { user } = useAuth(); // Saber quemé o utilizador logado
 
   const [formData, setFormData] = useState({
-    id: '', // Adicionando um campo de ID único
+    id: '', // ID único
     helpdeskType: '',
     equipment: '',
     invoiceNumber: '',
