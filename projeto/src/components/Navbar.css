@@ -61,13 +61,28 @@
   margin-right: 40px;
 }
 
-
 .email-link {
-  color: white; /* Cor do texto branca */
-  text-decoration: none; /* Remova o sublinhado */
-  transition: color 0.3s; /* Transição suave para a mudança de cor */
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .email-link:hover {
-  color: lightgray; /* Cor do texto ao passar o mouse por cima */
+  color: lightgray;
+}
+
+.navbar-icons button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.dark-mode .navbar-icons button {
+  color: black;
+}
+
+.dark-mode {
+  background-color: #222;
+  color: white;
 }

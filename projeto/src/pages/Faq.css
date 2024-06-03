@@ -1,0 +1,69 @@
+/* Faq.css */
+/* Estilos para o container principal */
+.faq-container {
+    max-width: 1200px; /* Reduz a largura máxima conforme necessário */
+    margin: 100px auto 50px; /* Aumenta a margem superior */
+    padding: 10px;
+    background-color: #f3ede5; /* Bege claro para o fundo */
+    border: 1px solid #453f3c; /* Tom de marrom escuro para a borda */
+    border-radius: 10px; /* Borda arredondada */
+    height: 80vh; /* Preenche toda a altura da janela do navegador */
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando o conteúdo é longo */
+}
+
+/* Estilos para o título */
+.faq-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #453f3c; /* Tom de marrom escuro para o título */
+    text-align: center;
+    margin-bottom: 20px; /* Aumenta o espaço abaixo do título */
+}
+
+/* Estilos para a barra de pesquisa */
+.search-container {
+    margin-bottom: 20px;
+}
+
+.faq-search {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #453f3c; /* Tom de marrom escuro para a borda */
+    border-radius: 20px; /* Borda arredondada */
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Estilos para os itens de FAQ */
+.faq-items {
+    width: 100%;
+}
+
+.faq-item {
+    margin-bottom: 20px; /* Ajusta o espaço abaixo de cada pergunta */
+}
+
+/* Estilos para as perguntas */
+.question {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #453f3c; /* Tom de marrom escuro para a pergunta */
+    background-color: #f9f9f9; /* Fundo branco para a pergunta */
+    padding: 15px;
+    border-radius: 10px; /* Borda arredondada */
+}
+
+/* Estilos para as respostas */
+.answer {
+    display: none; /* Mantém as respostas fechadas por padrão */
+    padding: 15px;
+    background-color: #f3ede5; /* Bege claro para o fundo da resposta */
+    color: #453f3c; /* Tom de marrom escuro para o texto da resposta */
+    border-radius: 10px; /* Borda arredondada */
+    margin-top: 10px; /* Espaço entre a pergunta e a resposta */
+}
+
+/* Estilos para a animação de transição */
+.faq-item.active .answer {
+    display: block;
+}

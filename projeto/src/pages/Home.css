@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 60px; /* Increased to provide more space from the navbar */
+  height: 100vh; /* Fills the entire viewport height */
 }
 
 .promotions {

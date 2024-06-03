@@ -4,13 +4,15 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
 
-const usersFilePath = path.join(__dirname, 'data', 'users.json');
-const productsFilePath = path.join(__dirname, 'data', 'products.json');
+const usersFilePath = path.join(__dirname, 'server', 'data', 'users.json');
+const productsFilePath = path.join(__dirname, 'server', 'data', 'products.json');
+const contactsFilePath = path.join(__dirname, 'server', 'data', 'contactos.json');
+const helpdeskFilePath = path.join(__dirname, 'server', 'data', 'helpdesk.json');
 
 // Função para ler arquivos JSON
 const readFile = (filePath) => {
@@ -37,6 +39,32 @@ const writeFile = (filePath, data) => {
     });
   });
 };
+
+// Rota para salvar contatos
+app.post('/api/contact', async (req, res) => {
+  const contactData = req.body;
+  console.log('Recebido novo contato:', contactData); // Log do contato recebido
+
+  try {
+    let contacts = [];
+    try {
+      contacts = await readFile(contactsFilePath);
+    } catch (err) {
+      // Se o arquivo não existir, inicializamos como um array vazio
+      if (err.code !== 'ENOENT') {
+        throw err;
+      }
+    }
+
+    contacts.push(contactData);
+    await writeFile(contactsFilePath, contacts);
+    console.log('Contato salvo com sucesso:', contacts); // Log dos contatos após salvar
+    res.status(201).json({ message: 'Contato salvo com sucesso' });
+  } catch (error) {
+    console.error('Erro ao salvar o contato:', error);
+    res.status(500).json({ error: 'Erro ao salvar o contato' });
+  }
+});
 
 // Rotas de autenticação
 app.post('/login', async (req, res) => {
@@ -135,97 +163,63 @@ app.delete('/api/products/:id', async (req, res) => {
   }
 });
 
-app.post('/api/helpdesk', (req, res) => {
+// Rotas de helpdesk
+app.post('/api/helpdesk', async (req, res) => {
   const helpdeskData = req.body;
 
-  // Lê o arquivo JSON existente
-  fs.readFile(path.join(__dirname, 'data', 'helpdesk.json'), 'utf8', (err, data) => {
-    if (err) {
-      return res.status(500).json({ error: 'Erro ao ler o arquivo de pedidos' });
-    }
-
-    // Converte o conteúdo do arquivo JSON em um array de objetos
+  try {
     let helpdesk = [];
-    if (data) {
-      helpdesk = JSON.parse(data);
+    try {
+      helpdesk = await readFile(helpdeskFilePath);
+    } catch (err) {
+      if (err.code !== 'ENOENT') {
+        throw err;
+      }
     }
 
-    // Adiciona os novos dados do helpdesk ao array
     helpdesk.push(helpdeskData);
-
-    // Escreve o array atualizado de volta no arquivo JSON
-    fs.writeFile(path.join(__dirname, 'data', 'helpdesk.json'), JSON.stringify(helpdesk, null, 2), 'utf8', (err) => {
-      if (err) {
-        return res.status(500).json({ error: 'Erro ao salvar o pedido' });
-      }
-
-      res.status(201).json({
-        id: helpdeskData.id, // Número do pedido recebido do frontend
-      });
-    });
-  });
+    await writeFile(helpdeskFilePath, helpdesk);
+    res.status(201).json({ id: helpdeskData.id });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao salvar o pedido' });
+  }
 });
 
+app.get('/api/helpdesk', async (req, res) => {
+  const { email } = req.query;
 
-// Endpoint para obter todos os pedidos de helpdesk
-app.get('/api/helpdesk', (req, res) => {
-  const { email } = req.query; // Obtém o parâmetro de email da consulta
-
-  // Lê o arquivo JSON e envia os dados como resposta
-  fs.readFile(path.join(__dirname, 'data', 'helpdesk.json'), 'utf8', (err, data) => {
-    if (err) {
-      return res.status(500).json({ error: 'Erro ao ler o arquivo de pedidos' });
-    }
-
-    const helpdesk = JSON.parse(data);
+  try {
+    const helpdesk = await readFile(helpdeskFilePath);
 
     if (email) {
-      // Filtra os pedidos pelo email se o parâmetro email estiver presente
       const filteredHelpdesk = helpdesk.filter(request => request.email === email);
       return res.json(filteredHelpdesk);
     }
 
-    // Se não houver parâmetro email, retorna todos os pedidos
     res.json(helpdesk);
-  });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao ler o arquivo de pedidos' });
+  }
 });
 
+app.put('/api/helpdesk/:id', async (req, res) => {
+  const requestId = req.params.id;
+  const updatedData = req.body;
 
-app.put('/api/helpdesk/:id', (req, res) => {
-  const requestId = req.params.id; // Obtém o ID do pedido a ser atualizado
-  const updatedData = req.body; // Obtém os dados atualizados do corpo da solicitação
-
-  // Lê o arquivo JSON existente
-  fs.readFile(path.join(__dirname, 'data', 'helpdesk.json'), 'utf8', (err, data) => {
-    if (err) {
-      return res.status(500).json({ error: 'Erro ao ler o arquivo de pedidos' });
-    }
-
-    let helpdesk = [];
-    if (data) {
-      helpdesk = JSON.parse(data);
-    }
-
-    // Procura o pedido com o ID correspondente na lista de pedidos
+  try {
+    let helpdesk = await readFile(helpdeskFilePath);
     const index = helpdesk.findIndex((item) => item.id === requestId);
 
-    // Se o pedido não for encontrado, retorna um erro 404
     if (index === -1) {
       return res.status(404).json({ error: 'Pedido não encontrado' });
     }
 
-    // Atualiza os dados do pedido na lista
     helpdesk[index] = { ...helpdesk[index], ...updatedData };
-
-    // Escreve o array atualizado de volta no arquivo JSON
-    fs.writeFile(path.join(__dirname, 'data', 'helpdesk.json'), JSON.stringify(helpdesk, null, 2), 'utf8', (err) => {
-      if (err) {
-        return res.status(500).json({ error: 'Erro ao atualizar o pedido' });
-      }
-
-      res.json({ message: 'Pedido atualizado com sucesso' });
-    });
-  });
+    await writeFile(helpdeskFilePath, helpdesk);
+    res.json({ message: 'Pedido atualizado com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao atualizar o pedido' });
+  }
 });
 
 app.listen(port, () => {

@@ -12,7 +12,7 @@ const Footer = () => {
         <button>Subscrever</button>
       </div>
       <div>
-        <Link to="/contact">Contactos</Link> | <Link to="/faq">Perguntas frequentes</Link> | <Link to="/support">Suporte</Link>
+        <Link to="/contactos">Contactos</Link> | <Link to="/faq">Perguntas frequentes</Link> | <Link to="/support">Suporte</Link> | <Link to="/termosecondicoes">Termos e Condições</Link>
       </div>
     </footer>
   );

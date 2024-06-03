@@ -1,0 +1,64 @@
+/* Estilos para o body */
+body {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    height: 100vh; /* Define a altura do corpo para ocupar toda a altura da tela */
+    margin: 0; /* Remove margens padrão */
+    background-color: #f3ede5; /* Bege claro para o fundo da página */
+}
+
+/* Estilos para o container principal */
+.contact-container {
+    max-width: 900px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3ede5; /* Bege claro para o fundo do container */
+    border: 1px solid #453f3c; /* Tom de marrom escuro para a borda */
+    border-radius: 10px; /* Borda arredondada */
+}
+
+/* Estilos para o título */
+.contact-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #453f3c; /* Tom de marrom escuro para o título */
+    margin-bottom: 20px; /* Adicionando um espaçamento inferior */
+}
+
+/* Estilos para o formulário de contato */
+.contact-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form label {
+    margin-top: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #453f3c; /* Tom de marrom escuro para a borda */
+    border-radius: 5px;
+}
+
+.contact-form textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+/* Estilos para os botões */
+.submit-button {
+    padding: 10px;
+    background-color: #453f3c; /* Tom de marrom escuro para o fundo dos botões */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}

@@ -1,0 +1,35 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f3ede5;
+}
+
+.terms-container {
+  width: 100%;
+  max-width: 800px;
+  flex: 1;
+  padding: 40px 20px 20px; /* Adiciona preenchimento superior e reduz o preenchimento inferior */
+  margin-top: 400px; /* Aumenta a margem superior para mover o container ainda mais para baixo */
+  background-color: #f9f9f9;
+  border: 1px solid #453f3c;
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.terms-container h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #453f3c;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.terms-container p {
+  color: #453f3c;
+  line-height: 1.5;
+  text-align: justify;
+}

@@ -1,4 +1,5 @@
-React, { useState, useEffect } from 'react';
+import React  from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
@@ -17,6 +18,9 @@ import HelpdeskManager from './pages/HelpdeskManager';
 import UserHelpdesk from './pages/UserHelpdesk';
 import EditProfile from './pages/EditProfile';
 import ProductList from './pages/ProductList';
+import Faq from './pages/Faq';
+import Contactos from './pages/Contactos';
+import Termosecondicoes from './pages/Termosecondicoes';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -30,12 +34,18 @@ const App = () => {
   }, []);
 
   const handleAddProduct = (newProduct) => {
+    const formData = new FormData();
+    formData.append('name', newProduct.name);
+    formData.append('category', newProduct.category);
+    formData.append('manufacturer', newProduct.manufacturer);
+    formData.append('price', newProduct.price);
+    formData.append('stock', newProduct.stock);
+    formData.append('description', newProduct.description);
+    formData.append('image', newProduct.image);
+
     fetch('http://localhost:5000/api/products', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newProduct),
+      body: formData,
     })
       .then(response => response.json())
       .then(savedProduct => setProducts([...products, savedProduct]))
@@ -43,12 +53,18 @@ const App = () => {
   };
 
   const handleUpdateProduct = (updatedProduct) => {
+    const formData = new FormData();
+    formData.append('name', updatedProduct.name);
+    formData.append('category', updatedProduct.category);
+    formData.append('manufacturer', updatedProduct.manufacturer);
+    formData.append('price', updatedProduct.price);
+    formData.append('stock', updatedProduct.stock);
+    formData.append('description', updatedProduct.description);
+    formData.append('image', updatedProduct.image);
+
     fetch(`http://localhost:5000/api/products/${updatedProduct.id}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedProduct),
+      body: formData,
     })
       .then(() => {
         const updatedProducts = products.map(product =>
@@ -128,6 +144,9 @@ const App = () => {
           <Route path="/configurator" element={<Configurator />} />
           <Route path="/user-helpdesk" element={<UserHelpdesk />} /> 
           <Route path="/edit-profile" element={<EditProfile />} /> 
+          <Route path="/faq" element={<Faq/>} /> 
+          <Route path="/contactos" element={<Contactos/>} /> 
+          <Route path="/termosecondicoes" element={<Termosecondicoes/>} /> 
         </Routes>
       </Router>
     </AuthProvider>
