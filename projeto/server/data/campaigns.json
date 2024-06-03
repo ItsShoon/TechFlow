@@ -10,7 +10,7 @@
   },
   {
     "name": "Black Friday ",
-    "discount": 15,
+    "discount": "16",
     "startDate": "2024-05-17",
     "endDate": "2024-05-20",
     "isActive": true,
