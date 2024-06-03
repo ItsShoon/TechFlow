@@ -1,0 +1,106 @@
+[
+  {
+    "campaignId": 1,
+    "productId": 1
+  },
+  {
+    "campaignId": 1,
+    "productId": 3
+  },
+  {
+    "campaignId": 1,
+    "productId": 5
+  },
+  {
+    "campaignId": 2,
+    "productId": 3
+  },
+  {
+    "campaignId": 2,
+    "productId": 5
+  },
+  {
+    "campaignId": 3,
+    "productId": 1
+  },
+  {
+    "campaignId": 3,
+    "productId": 2
+  },
+  {
+    "campaignId": 4,
+    "productId": 1
+  },
+  {
+    "campaignId": 4,
+    "productId": 3
+  },
+  {
+    "campaignId": 4,
+    "productId": 5
+  },
+  {
+    "campaignId": 1,
+    "productId": 1
+  },
+  {
+    "campaignId": 1,
+    "productId": 2
+  },
+  {
+    "campaignId": 1,
+    "productId": 3
+  },
+  {
+    "campaignId": 2,
+    "productId": 1
+  },
+  {
+    "campaignId": 2,
+    "productId": 2
+  },
+  {
+    "campaignId": 2,
+    "productId": 3
+  },
+  {
+    "campaignId": 5,
+    "productId": 1
+  },
+  {
+    "campaignId": 5,
+    "productId": 2
+  },
+  {
+    "campaignId": 5,
+    "productId": 3
+  },
+  {
+    "campaignId": 3,
+    "productId": 5
+  },
+  {
+    "campaignId": 3,
+    "productId": 6
+  },
+  {
+    "campaignId": 3,
+    "productId": 7
+  },
+  {
+    "campaignId": 3,
+    "productId": 8
+  },
+  {
+    "campaignId": 2,
+    "productId": 8
+  },
+  {
+    "campaignId": 2,
+    "productId": 10
+  },
+  {
+    "campaignId": 2,
+    "productId": 9
+  }
+]

@@ -1,9 +1,8 @@
-/* Home.css */
 .home {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px; /* Increased to provide more space from the navbar */
+  margin-top: 60px;
 }
 
 .promotions {
@@ -13,7 +12,7 @@
   background-color: #f8f8f8;
   padding: 20px;
   border-radius: 10px;
-  min-height: 300px; /* Increased size */
+  min-height: 300px;
 }
 
 .carousel .slide img {
@@ -27,22 +26,27 @@
   padding: 10px;
 }
 
-.new-arrivals, .featured {
-  width: 80%;
+.campaign-container-home {
+  width: 90%;
   margin: 20px 0;
+  background-color: #cac8c8;
+  padding: 20px;
+  border-radius: 10px;
 }
 
-.product-grid {
+.campaign-products-home {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
 }
 
 .product-card {
+  flex: 0 0 auto;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 10px;
   width: 200px;
+  margin-right: 10px;
   text-align: center;
 }
 

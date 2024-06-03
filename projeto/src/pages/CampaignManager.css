@@ -13,7 +13,7 @@
   background-color: #333;
 }
 
-.btn-submit-campaign-2 {
+.btn-submit-campaign {
   background-color: #555;
   color: white;
   padding: 10px 20px;
@@ -24,12 +24,12 @@
   font-size: 16px;
 }
 
-.btn-submit-campaign-2:hover {
+.btn-submit-campaign:hover {
   background-color: #333;
 }
 
 .campaign-container {
-  width: 80%; /* Reduza a largura máxima conforme necessário */
+  width: 45%;
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -38,25 +38,25 @@
   margin-top: 80px;
 }
 
-.manage-form-campaign {
+.campaign-form {
   display: flex;
   flex-direction: column;
 }
 
-.manage-form-campaign label {
+.campaign-form label {
   margin-top: 10px;
 }
 
-.manage-form-campaign input,
-.manage-form-campaign select,
-.manage-form-campaign textarea {
+.campaign-form input,
+.campaign-form select,
+.campaign-form textarea {
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.manage-form-campaign {
+.campaign-form {
   margin-bottom: 20px;
   margin-top: 20px;
   padding: 10px;
@@ -78,7 +78,8 @@
 }
 
 .campaign-table th {
-  background-color: #f2f2f2;
+  background-color: #333;
+  color: white;
   text-align: left;
 }
 
@@ -87,4 +88,50 @@
   transform: scale(1.5);
 }
 
+.btn-edit-campaign {
+  background-color: #555;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 12px;
+  margin-right: 5px;
+}
 
+.btn-delete-campaign {
+  background-color: #d03f3f;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.btn-manage-campaign-products {
+  background-color: #0211b5;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.btn-edit-campaign:hover {
+  background-color: #333;
+}
+
+.btn-delete-campaign:hover {
+  background-color: #dd0707;
+}
+
+.btn-manage-campaign-products:hover {
+  background-color: #254ff4;
+}

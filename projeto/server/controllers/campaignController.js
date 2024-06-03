@@ -3,9 +3,10 @@ const path = require('path');
 
 const campaignsFilePath = path.join(__dirname, '../data/campaigns.json');
 
-const readCampaigns = () => {
+// Função para ler arquivos JSON
+const readFile = (filePath) => {
   return new Promise((resolve, reject) => {
-    fs.readFile(campaignsFilePath, 'utf8', (err, data) => {
+    fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
         reject(err);
       } else {
@@ -15,9 +16,10 @@ const readCampaigns = () => {
   });
 };
 
-const writeCampaigns = (campaigns) => {
+// Função para escrever arquivos JSON
+const writeFile = (filePath, data) => {
   return new Promise((resolve, reject) => {
-    fs.writeFile(campaignsFilePath, JSON.stringify(campaigns, null, 2), 'utf8', (err) => {
+    fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8', (err) => {
       if (err) {
         reject(err);
       } else {
@@ -27,63 +29,64 @@ const writeCampaigns = (campaigns) => {
   });
 };
 
+// Obtém todas as campanhas
 const getAllCampaigns = async (req, res) => {
   try {
-    const campaigns = await readCampaigns();
+    const campaigns = await readFile(campaignsFilePath);
     res.json(campaigns);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao ler as campanhas' });
+    res.status(500).json({ error: 'Erro ao ler campanhas' });
   }
 };
 
+// Adiciona uma nova campanha
 const addCampaign = async (req, res) => {
   const newCampaign = req.body;
-
   try {
-    const campaigns = await readCampaigns();
-    newCampaign.id = campaigns.length ? campaigns[campaigns.length - 1].id + 1 : 1;
+    const campaigns = await readFile(campaignsFilePath);
+    newCampaign.id = campaigns.length + 1;
     campaigns.push(newCampaign);
-    await writeCampaigns(campaigns);
-    res.status(201).json(newCampaign);
+    await writeFile(campaignsFilePath, campaigns);
+    res.json(newCampaign);
   } catch (error) {
     res.status(500).json({ error: 'Erro ao adicionar campanha' });
   }
 };
 
+// Atualiza uma campanha existente por ID
 const updateCampaign = async (req, res) => {
-  const updatedCampaign = req.body; 
-  const id = parseInt(req.params.id);
-
+  const { id } = req.params;
+  const updatedCampaign = req.body;
   try {
-    let campaigns = await readCampaigns();
-    const campaignIndex = campaigns.findIndex((item) => item.id === id);
-
-    if (campaignIndex === -1) {
-      return res.status(404).json({ error: 'Campanha não encontrada' });
-    }
-
-    campaigns[campaignIndex] = { ...campaigns[campaignIndex], ...updatedCampaign };
-    await writeCampaigns(campaigns);
-    res.json(campaigns[campaignIndex]);
+    let campaigns = await readFile(campaignsFilePath);
+    campaigns = campaigns.map(campaign => (campaign.id == id ? { ...campaign, ...updatedCampaign } : campaign));
+    await writeFile(campaignsFilePath, campaigns);
+    res.json({ message: 'Campanha atualizada com sucesso' });
   } catch (error) {
     res.status(500).json({ error: 'Erro ao atualizar campanha' });
   }
 };
 
+// Deleta uma campanha por ID
 const deleteCampaign = async (req, res) => {
-  const id = parseInt(req.params.id);
-
+  const { id } = req.params;
   try {
-    let campaigns = await readCampaigns();
-    campaigns = campaigns.filter(campaign => campaign.id !== id);
-    await writeCampaigns(campaigns);
+    let campaigns = await readFile(campaignsFilePath);
+    campaigns = campaigns.filter(campaign => campaign.id != id);
+    await writeFile(campaignsFilePath, campaigns);
     res.json({ message: 'Campanha removida com sucesso' });
   } catch (error) {
     res.status(500).json({ error: 'Erro ao remover campanha' });
   }
 };
 
-module.exports = { getAllCampaigns, addCampaign, updateCampaign, deleteCampaign };
+module.exports = {
+  getAllCampaigns,
+  addCampaign,
+  updateCampaign,
+  deleteCampaign,
+};
+
 
 
 
