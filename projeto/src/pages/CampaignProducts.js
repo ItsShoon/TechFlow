@@ -5,7 +5,6 @@ import './CampaignProducts.css';
 const CampaignProducts = ({ products, campaignProducts, onAddProductToCampaign, onRemoveProductFromCampaign }) => {
   const { campaignId } = useParams();
   const productsInCampaign = campaignProducts.filter(cp => cp.campaignId === parseInt(campaignId)).map(cp => cp.productId);
-
   const availableProducts = products.filter(p => !productsInCampaign.includes(p.id));
 
   return (
