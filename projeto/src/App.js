@@ -18,18 +18,33 @@ import UserHelpdesk from './pages/UserHelpdesk';
 import EditProfile from './pages/EditProfile';
 import ProductList from './pages/ProductList';
 import CategoryProducts from './pages/CategoryProducts';
+<<<<<<< HEAD
 import CartPage from './pages/CartPage';
 
+=======
+import CampaignProducts from './pages/CampaignProducts';
+>>>>>>> e7ab750cfc878b07278bbcba94ad7fd57d7acbf4
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
+  const [campaignProducts, setCampaignProducts] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:5000/api/products')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
+    
+    fetch('http://localhost:5000/api/campaigns')
+      .then(response => response.json())
+      .then(data => setCampaigns(data))
+      .catch(error => console.error('Error fetching campaigns:', error));
+
+    fetch('http://localhost:5000/api/campaign-products')
+      .then(response => response.json())
+      .then(data => setCampaignProducts(data))
+      .catch(error => console.error('Error fetching campaign products:', error));
   }, []);
 
   const handleAddProduct = (newProduct) => {
@@ -86,7 +101,71 @@ const App = () => {
   };
 
   const handleAddCampaign = (newCampaign) => {
-    setCampaigns([...campaigns, newCampaign]);
+    fetch('http://localhost:5000/api/campaigns', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newCampaign),
+    })
+      .then(response => response.json())
+      .then(savedCampaign => setCampaigns([...campaigns, savedCampaign]))
+      .catch(error => console.error('Error adding campaign:', error));
+  };
+
+  const handleUpdateCampaign = (updatedCampaign) => {
+    fetch(`http://localhost:5000/api/campaigns/${updatedCampaign.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedCampaign),
+    })
+      .then(() => {
+        const updatedCampaigns = campaigns.map(campaign =>
+          campaign.id === updatedCampaign.id ? updatedCampaign : campaign
+        );
+        setCampaigns(updatedCampaigns);
+      })
+      .catch(error => console.error('Error updating campaign:', error));
+  };
+
+  const handleDeleteCampaign = (id) => {
+    fetch(`http://localhost:5000/api/campaigns/${id}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        const updatedCampaigns = campaigns.filter(campaign => campaign.id !== id);
+        setCampaigns(updatedCampaigns);
+      })
+      .catch(error => console.error('Error deleting campaign:', error));
+  };
+
+  const handleAddProductToCampaign = (campaignId, productId) => {
+    fetch(`http://localhost:5000/api/campaign-products/${campaignId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId }),
+    })
+      .then(response => response.json())
+      .then(() => {
+        const updatedCampaignProducts = [...campaignProducts, { campaignId, productId }];
+        setCampaignProducts(updatedCampaignProducts);
+      })
+      .catch(error => console.error('Error adding product to campaign:', error));
+  };
+
+  const handleRemoveProductFromCampaign = (campaignId, productId) => {
+    fetch(`http://localhost:5000/api/campaign-products/${campaignId}/${productId}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        const updatedCampaignProducts = campaignProducts.filter(cp => !(cp.campaignId === campaignId && cp.productId === productId));
+        setCampaignProducts(updatedCampaignProducts);
+      })
+      .catch(error => console.error('Error removing product from campaign:', error));
   };
 
   return (
@@ -110,7 +189,7 @@ const App = () => {
             path="/gerir-campanhas" 
             element={
               <ProtectedRoute>
-                <CampaignManager campaigns={campaigns} onAddCampaign={handleAddCampaign} />
+                <CampaignManager campaigns={campaigns} onAddCampaign={handleAddCampaign} onDeleteCampaign={handleDeleteCampaign} />
               </ProtectedRoute>
             } 
           />
@@ -131,12 +210,25 @@ const App = () => {
             } 
           />
           <Route 
-            path="/editar-campanha" 
+            path="/editar-campanha/:id" 
             element={
               <ProtectedRoute>
-                <EditCampaign campaigns={campaigns} />
+                <EditCampaign campaigns={campaigns} onUpdateCampaign={handleUpdateCampaign} />
               </ProtectedRoute>
             } 
+          />
+          <Route 
+            path="/gerir-produtos-campanha/:campaignId" 
+            element={
+              <ProtectedRoute>
+                <CampaignProducts 
+                  products={products} 
+                  campaignProducts={campaignProducts} 
+                  onAddProductToCampaign={handleAddProductToCampaign}
+                  onRemoveProductFromCampaign={handleRemoveProductFromCampaign}
+                />
+              </ProtectedRoute>
+            }
           />
           <Route path="/support" element={<Helpdesk />} />
           <Route path="/gerir-pedidos" element={<HelpdeskManager />} />
@@ -152,3 +244,6 @@ const App = () => {
 };
 
 export default App;
+
+
+

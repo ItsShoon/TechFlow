@@ -13,7 +13,12 @@ app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
 const usersFilePath = path.join(__dirname, 'data', 'users.json');
 const productsFilePath = path.join(__dirname, 'data', 'products.json');
+<<<<<<< HEAD
 const cartFilePath = path.join(__dirname, 'data', 'cart.json');
+=======
+const campaignsFilePath = path.join(__dirname, 'data', 'campaigns.json');
+const campaignProductsFilePath = path.join(__dirname, 'data', 'campaignProducts.json');
+>>>>>>> e7ab750cfc878b07278bbcba94ad7fd57d7acbf4
 
 // Configuração do multer para upload de imagens
 const storage = multer.diskStorage({
@@ -184,7 +189,6 @@ app.post('/api/helpdesk', (req, res) => {
   });
 });
 
-
 // Endpoint para obter todos os pedidos de helpdesk
 app.get('/api/helpdesk', (req, res) => {
   const { email } = req.query; // Obtém o parâmetro de email da consulta
@@ -207,7 +211,6 @@ app.get('/api/helpdesk', (req, res) => {
     res.json(helpdesk);
   });
 });
-
 
 app.put('/api/helpdesk/:id', (req, res) => {
   const requestId = req.params.id; // Obtém o ID do pedido a ser atualizado
@@ -246,7 +249,6 @@ app.put('/api/helpdesk/:id', (req, res) => {
   });
 });
 
-
 app.get('/api/users', async (req, res) => {
   const { email } = req.query;
 
@@ -273,7 +275,6 @@ app.get('/api/users', async (req, res) => {
     res.status(500).json({ error: 'Erro ao buscar usuário' });
   }
 });
-
 
 // Rota para atualizar usuário por email
 app.put('/api/users', async (req, res) => {
@@ -308,7 +309,150 @@ app.put('/api/users', async (req, res) => {
     res.status(500).json({ error: 'Erro ao atualizar usuário' });
   }
 });
+<<<<<<< HEAD
+=======
+       
+// Rotas de campanhas
+app.get('/api/campaigns', async (req, res) => {
+  try {
+    const campaigns = await readFile(campaignsFilePath);
+    res.json(campaigns);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao ler campanhas' });
+  }
+});
+>>>>>>> e7ab750cfc878b07278bbcba94ad7fd57d7acbf4
 
+app.get('/api/campaigns/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const campaigns = await readFile(campaignsFilePath);
+    const campaign = campaigns.find(c => c.id === parseInt(id));
+    if (campaign) {
+      res.json(campaign);
+    } else {
+      res.status(404).json({ error: 'Campanha não encontrada' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao ler campanhas' });
+  }
+});
+
+app.post('/api/campaigns', async (req, res) => {
+  const newCampaign = req.body;
+  try {
+    const campaigns = await readFile(campaignsFilePath);
+    newCampaign.id = campaigns.length + 1;
+    campaigns.push(newCampaign);
+    await writeFile(campaignsFilePath, campaigns);
+    res.json(newCampaign);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao adicionar campanha' });
+  }
+});
+
+app.put('/api/campaigns/:id', async (req, res) => {
+  const { id } = req.params;
+  const updatedCampaign = req.body;
+  try {
+    let campaigns = await readFile(campaignsFilePath);
+    campaigns = campaigns.map(campaign => (campaign.id == id ? { ...campaign, ...updatedCampaign } : campaign));
+    await writeFile(campaignsFilePath, campaigns);
+    res.json({ message: 'Campanha atualizada com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao atualizar campanha' });
+  }
+});
+
+app.delete('/api/campaigns/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    let campaigns = await readFile(campaignsFilePath);
+    campaigns = campaigns.filter(campaign => campaign.id != id);
+    await writeFile(campaignsFilePath, campaigns);
+    res.json({ message: 'Campanha removida com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao remover campanha' });
+  }
+});
+
+// Função para ler associações de campanhas e produtos
+const readCampaignProductsFile = () => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(campaignProductsFilePath, 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(JSON.parse(data));
+      }
+    });
+  });
+};
+
+// Função para escrever associações de campanhas e produtos
+const writeCampaignProductsFile = (data) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(campaignProductsFilePath, JSON.stringify(data, null, 2), 'utf8', (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+};
+
+// Endpoint para obter todas as associações de campanhas e produtos
+app.get('/api/campaign-products', async (req, res) => {
+  try {
+    const campaignProducts = await readCampaignProductsFile();
+    res.json(campaignProducts);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao ler as associações de campanhas e produtos' });
+  }
+});
+
+// Endpoint para obter os produtos de uma campanha
+app.get('/api/campaign-products/:campaignId', async (req, res) => {
+  const { campaignId } = req.params;
+  try {
+    const campaignProducts = await readFile(campaignProductsFilePath);
+    const products = await readFile(productsFilePath);
+    const productsInCampaign = campaignProducts
+      .filter(cp => cp.campaignId === parseInt(campaignId))
+      .map(cp => products.find(p => p.id === cp.productId));
+    res.json(productsInCampaign);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao ler os produtos da campanha' });
+  }
+});
+
+// Endpoint para adicionar um produto a uma campanha
+app.post('/api/campaign-products/:campaignId', async (req, res) => {
+  const { campaignId } = req.params;
+  const { productId } = req.body;
+  try {
+    const campaignProducts = await readFile(campaignProductsFilePath);
+    campaignProducts.push({ campaignId: parseInt(campaignId), productId: parseInt(productId) });
+    await writeFile(campaignProductsFilePath, campaignProducts);
+    res.status(201).json({ message: 'Produto adicionado à campanha com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao adicionar produto à campanha' });
+  }
+});
+
+// Endpoint para remover um produto de uma campanha
+app.delete('/api/campaign-products/:campaignId/:productId', async (req, res) => {
+  const { campaignId, productId } = req.params;
+  try {
+    let campaignProducts = await readFile(campaignProductsFilePath);
+    campaignProducts = campaignProducts.filter(cp => !(cp.campaignId === parseInt(campaignId) && cp.productId === parseInt(productId)));
+    await writeFile(campaignProductsFilePath, campaignProducts);
+    res.status(200).json({ message: 'Produto removido da campanha com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao remover produto da campanha' });
+  }
+});
 
 // Rota para obter o carrinho do usuário
 app.post('/api/cart/get', async (req, res) => {

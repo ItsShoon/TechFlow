@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "name": "Teste ",
+    "discount": "5",
+    "startDate": "2024-05-10",
+    "endDate": "2024-05-11",
+    "isActive": true,
+    "id": 1,
+    "active": false
+  },
+  {
+    "name": "Black Friday ",
+    "discount": "16",
+    "startDate": "2024-05-17",
+    "endDate": "2024-05-20",
+    "isActive": true,
+    "id": 2,
+    "active": false
+  },
+  {
+    "name": "Teste 2",
+    "discount": "25",
+    "startDate": "2024-05-29",
+    "endDate": "2024-06-22",
+    "active": true,
+    "id": 3
+  },
+  {
+    "name": "Teste 3",
+    "discount": "50",
+    "startDate": "2024-06-06",
+    "endDate": "2024-06-08",
+    "active": true,
+    "id": 4
+  },
+  {
+    "name": "teste aula",
+    "discount": "25",
+    "startDate": "2024-06-06",
+    "endDate": "2024-06-07",
+    "active": true,
+    "id": 5
+  }
+]

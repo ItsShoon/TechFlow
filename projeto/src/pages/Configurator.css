@@ -35,6 +35,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  max-width: 12000px; /* Define uma largura fixa */
 }
 
 .product-list {
@@ -42,6 +43,8 @@
   flex-wrap: wrap;
   gap: 20px;
   flex-grow: 1;
+  width: 1400px;
+  border-left: 10px;
 }
 
 .product-card {
@@ -51,6 +54,9 @@
   width: 200px;
   text-align: center;
   background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product-card h3 {
@@ -70,6 +76,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: auto;
 }
 
 .product-card button:hover {
@@ -96,6 +103,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.selected-product p {
+  flex: 1;
 }
 
 .selected-product button {
@@ -105,8 +117,15 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .selected-product button:hover {
   background-color: #c82333;
+}
+
+.selected-product-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
