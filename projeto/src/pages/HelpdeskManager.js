@@ -100,7 +100,7 @@ const HelpdeskManager = () => {
   
   
   return (
-    <div className="manage-container">
+    <div className="helpdesk-manage-container">
       <h2>Pedidos de Helpdesk</h2>
       {helpdeskRequests.length > 0 ? (
         <table className="helpdesk-table">

@@ -3,70 +3,90 @@ const path = require('path');
 
 const campaignsFilePath = path.join(__dirname, '../data/campaigns.json');
 
-const getCampaigns = () => {
-    const campaignsData = fs.readFileSync(campaignsFilePath);
-    return JSON.parse(campaignsData);
+// Função para ler arquivos JSON
+const readFile = (filePath) => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(JSON.parse(data));
+      }
+    });
+  });
 };
 
-const saveCampaigns = (campaigns) => {
-    fs.writeFileSync(campaignsFilePath, JSON.stringify(campaigns, null, 2));
+// Função para escrever arquivos JSON
+const writeFile = (filePath, data) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8', (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
 };
 
-exports.getAllCampaigns = (req, res) => {
-    try {
-        const campaigns = getCampaigns();
-        res.json(campaigns);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-    }
+// Obtém todas as campanhas
+const getAllCampaigns = async (req, res) => {
+  try {
+    const campaigns = await readFile(campaignsFilePath);
+    res.json(campaigns);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao ler campanhas' });
+  }
 };
 
-exports.addCampaign = (req, res) => {
-    const { title, description, discount } = req.body;
-    try {
-        const campaigns = getCampaigns();
-        const newCampaign = { id: Date.now(), title, description, discount };
-        campaigns.push(newCampaign);
-        saveCampaigns(campaigns);
-        res.json(newCampaign);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-    }
+// Adiciona uma nova campanha
+const addCampaign = async (req, res) => {
+  const newCampaign = req.body;
+  try {
+    const campaigns = await readFile(campaignsFilePath);
+    newCampaign.id = campaigns.length + 1;
+    campaigns.push(newCampaign);
+    await writeFile(campaignsFilePath, campaigns);
+    res.json(newCampaign);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao adicionar campanha' });
+  }
 };
 
-exports.updateCampaign = (req, res) => {
-    const { title, description, discount } = req.body;
-    try {
-        let campaigns = getCampaigns();
-        const campaignIndex = campaigns.findIndex(campaign => campaign.id === parseInt(req.params.id));
-        if (campaignIndex === -1) {
-            return res.status(404).json({ msg: 'Campaign not found' });
-        }
-
-        campaigns[campaignIndex] = { ...campaigns[campaignIndex], title, description, discount };
-        saveCampaigns(campaigns);
-        res.json(campaigns[campaignIndex]);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-    }
+// Atualiza uma campanha existente por ID
+const updateCampaign = async (req, res) => {
+  const { id } = req.params;
+  const updatedCampaign = req.body;
+  try {
+    let campaigns = await readFile(campaignsFilePath);
+    campaigns = campaigns.map(campaign => (campaign.id == id ? { ...campaign, ...updatedCampaign } : campaign));
+    await writeFile(campaignsFilePath, campaigns);
+    res.json({ message: 'Campanha atualizada com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao atualizar campanha' });
+  }
 };
 
-exports.deleteCampaign = (req, res) => {
-    try {
-        let campaigns = getCampaigns();
-        const campaignIndex = campaigns.findIndex(campaign => campaign.id === parseInt(req.params.id));
-        if (campaignIndex === -1) {
-            return res.status(404).json({ msg: 'Campaign not found' });
-        }
-
-        campaigns.splice(campaignIndex, 1);
-        saveCampaigns(campaigns);
-        res.json({ msg: 'Campaign removed' });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-    }
+// Deleta uma campanha por ID
+const deleteCampaign = async (req, res) => {
+  const { id } = req.params;
+  try {
+    let campaigns = await readFile(campaignsFilePath);
+    campaigns = campaigns.filter(campaign => campaign.id != id);
+    await writeFile(campaignsFilePath, campaigns);
+    res.json({ message: 'Campanha removida com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao remover campanha' });
+  }
 };
+
+module.exports = {
+  getAllCampaigns,
+  addCampaign,
+  updateCampaign,
+  deleteCampaign,
+};
+
+
+
+

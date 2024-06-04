@@ -7,9 +7,9 @@
     "postalCode": "4720-527",
     "city": "Braga",
     "phone": "935452266",
-    "password": "andre1",
+    "password": "",
     "role": "user",
-    "confirmPassword": "andre1"
+    "confirmPassword": ""
   },
   {
     "name": "Nuno",
