@@ -42,8 +42,10 @@
     "invoiceNumber": "wwwww",
     "description": "wwwww",
     "email": "andre.fontes7331@gmail.com",
-    "status": "Pendente",
-    "currentDate": "23/05/2024"
+    "status": "Em Andamento",
+    "currentDate": "23/05/2024",
+    "notes": "rrr",
+    "lastUpdatedDate": "03/06/2024"
   },
   {
     "id": "arwpnuquo",
@@ -74,5 +76,15 @@
     "email": "gestor@techflow.pt",
     "status": "Pendente",
     "currentDate": "02/06/2024"
+  },
+  {
+    "id": "o6r8d1xuo",
+    "helpdeskType": "Suporte Técnico",
+    "equipment": "Computador",
+    "invoiceNumber": "gg",
+    "description": "ggg",
+    "email": "andre.fontes7331@gmail.com",
+    "status": "Pendente",
+    "currentDate": "03/06/2024"
   }
 ]
