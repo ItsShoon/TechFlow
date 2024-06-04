@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import CategoryMenu from './CategoryMenu';
 import ProfileDropdown from './ProfileDropdown';
+import useCart from '../hooks/useCart';
 import './Navbar.css';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const { cart, getTotalItems } = useCart();
+  const [cartCount, setCartCount] = useState(0);
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
+
+  useEffect(() => {
+    console.log('Cart updated:', cart);
+    setCartCount(getTotalItems());
+  }, [cart, getTotalItems]);
 
   return (
     <nav className="navbar">
@@ -43,7 +51,9 @@ const Navbar = () => {
         ) : (
           <Link to="/login">👤</Link>
         )}
-        <span className="cart-icon">🛒(0)</span>
+        <Link to="/cart" className="cart-icon-link">
+          <span className="cart-icon">🛒({cartCount})</span>
+        </Link>
       </div>
     </nav>
   );

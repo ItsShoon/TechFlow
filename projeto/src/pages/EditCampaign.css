@@ -1,0 +1,51 @@
+.edit-campaign-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-campaign-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .edit-campaign-form label {
+    margin-top: 10px;
+  }
+  
+  .edit-campaign-form input,
+  .edit-campaign-form select,
+  .edit-campaign-form textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .edit-campaign-form {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+  }
+  
+  .btn-submit-edit-campaign {
+    background-color: #555;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  
+  .btn-submit-edit-campaign:hover {
+    background-color: #333;
+  }

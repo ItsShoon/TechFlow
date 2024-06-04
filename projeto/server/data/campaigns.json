@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "name": "Black Friday",
+    "discount": "10",
+    "startDate": "2024-06-05",
+    "endDate": "2024-06-07",
+    "active": true,
+    "id": 1
+  },
+  {
+    "name": "Regresso às Aulas",
+    "discount": "15",
+    "startDate": "2024-06-03",
+    "endDate": "2024-06-22",
+    "active": true,
+    "id": 2
+  }
+]

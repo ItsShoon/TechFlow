@@ -1,55 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './CampaignManager.css';
 
-const CampaignManager = ({ campaigns = [], onAddCampaign }) => {
-  const [name, setName] = useState('');
-  const [discount, setDiscount] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [active, setActive] = useState(false);
+const CampaignManager = ({ campaigns, onAddCampaign, onDeleteCampaign }) => {
+  const [isAdding, setIsAdding] = useState(false);
+  const [newCampaign, setNewCampaign] = useState({
+    name: '',
+    discount: '',
+    startDate: '',
+    endDate: '',
+    active: false
+  });
 
-  const handleAddCampaign = (e) => {
-    e.preventDefault();
-    const newCampaign = {
-      id: campaigns.length + 1,
-      name,
-      discount: parseFloat(discount),
-      startDate,
-      endDate,
-      active
-    };
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setNewCampaign(prevState => ({
+      ...prevState,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleAddCampaign = () => {
     onAddCampaign(newCampaign);
-    setName('');
-    setDiscount('');
-    setStartDate('');
-    setEndDate('');
-    setActive(false);
+    setNewCampaign({ name: '', discount: '', startDate: '', endDate: '', active: false });
+    setIsAdding(false);
   };
 
   return (
-    <div className="manage-container">
+    <div className="campaign-container">
       <h2>Gerir Campanhas</h2>
-      <div className="tab-container">
-        <Link to="/gerir-campanhas" className="tab-link active">Adicionar Campanha</Link>
-        <Link to="/editar-campanha" className="tab-link">Editar Campanha</Link>
-      </div>
-      <form className="manage-form" onSubmit={handleAddCampaign}>
-        <label>Nome:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-        <label>Desconto (%):</label>
-        <input type="number" value={discount} onChange={(e) => setDiscount(e.target.value)} required />
-        <label>Data de Início:</label>
-        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} required />
-        <label>Data de Fim:</label>
-        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
-        <label>
-          Ativa:
-          <input type="checkbox" checked={active} onChange={(e) => setActive(e.target.checked)} />
-        </label>
-        <button type="submit">Adicionar Campanha</button>
-      </form>
-      <h2>Campanhas Existentes</h2>
+      {isAdding ? (
+        <div className="campaign-form">
+          <label>Nome:</label>
+          <input type="text" name="name" value={newCampaign.name} onChange={handleInputChange} required />
+          
+          <label>Desconto (%):</label>
+          <input type="number" name="discount" value={newCampaign.discount} onChange={handleInputChange} required />
+          
+          <label>Data de Início:</label>
+          <input type="date" name="startDate" value={newCampaign.startDate} onChange={handleInputChange} required />
+          
+          <label>Data de Fim:</label>
+          <input type="date" name="endDate" value={newCampaign.endDate} onChange={handleInputChange} required />
+          
+          <label>
+            Ativa:
+            <input type="checkbox" name="active" checked={newCampaign.active} onChange={handleInputChange} className="checkbox-active" />
+          </label>
+          
+          <button onClick={handleAddCampaign} className="btn-submit-campaign">Adicionar Campanha</button>
+        </div>
+      ) : (
+        <button onClick={() => setIsAdding(true)} className="btn-add-campaign">Adicionar Campanha</button>
+      )}
       <table className="campaign-table">
         <thead>
           <tr>
@@ -58,16 +61,26 @@ const CampaignManager = ({ campaigns = [], onAddCampaign }) => {
             <th>Data de Início</th>
             <th>Data de Fim</th>
             <th>Ativa</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {campaigns.map((campaign) => (
+          {campaigns.map(campaign => (
             <tr key={campaign.id}>
               <td>{campaign.name}</td>
               <td>{campaign.discount}%</td>
               <td>{campaign.startDate}</td>
               <td>{campaign.endDate}</td>
               <td>{campaign.active ? 'Sim' : 'Não'}</td>
+              <td>
+                <Link to={`/editar-campanha/${campaign.id}`}>
+                  <button className="btn-edit-campaign">Editar</button>
+                </Link>
+                <button className="btn-delete-campaign" onClick={() => onDeleteCampaign(campaign.id)}>Remover</button>
+                <Link to={`/gerir-produtos-campanha/${campaign.id}`}>
+                  <button className="btn-manage-campaign-products">Gerir Produtos</button>
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>

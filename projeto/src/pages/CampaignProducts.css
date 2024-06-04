@@ -1,0 +1,60 @@
+.manage-campaign-products-container {
+    width: 40%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-top: 80px;
+  }
+  
+  .available-products,
+  .campaign-products {
+    margin-top: 20px;
+  }
+  
+  .available-products ul,
+  .campaign-products ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .available-products li,
+  .campaign-products li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .campaign-products li {
+    flex-wrap: wrap;
+  }
+  
+  .campaign-products button {
+    background-color: #da3434;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  
+  .available-products button {
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .campaign-products button:hover {
+    background-color: #980606;
+  }
+  
+  .available-products button:hover {
+    background-color: #555;
+  }
