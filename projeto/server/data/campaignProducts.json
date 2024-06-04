@@ -1,10 +1,6 @@
 [
   {
     "campaignId": 1,
-    "productId": 1
-  },
-  {
-    "campaignId": 1,
     "productId": 3
   },
   {
@@ -38,10 +34,6 @@
   {
     "campaignId": 4,
     "productId": 5
-  },
-  {
-    "campaignId": 1,
-    "productId": 1
   },
   {
     "campaignId": 1,
@@ -102,5 +94,17 @@
   {
     "campaignId": 2,
     "productId": 9
+  },
+  {
+    "campaignId": 1,
+    "productId": 4
+  },
+  {
+    "campaignId": 5,
+    "productId": 4
+  },
+  {
+    "campaignId": 5,
+    "productId": 5
   }
 ]
