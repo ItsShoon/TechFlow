@@ -22,7 +22,6 @@ const CategoryProducts = () => {
     fetchProductsByCategory();
   }, [category]);
 
-<<<<<<< HEAD
   const fetchProductsByCategory = async () => {
     try {
       const response = await fetch(`http://localhost:5000/api/products/category/${category}`);
@@ -39,8 +38,6 @@ const CategoryProducts = () => {
     addToCart(cartItem);
   };
 
-=======
->>>>>>> e7ab750cfc878b07278bbcba94ad7fd57d7acbf4
   return (
     <div className="category-products-container">
       <div className="product-grid">

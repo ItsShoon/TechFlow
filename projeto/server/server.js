@@ -13,12 +13,9 @@ app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
 const usersFilePath = path.join(__dirname, 'data', 'users.json');
 const productsFilePath = path.join(__dirname, 'data', 'products.json');
-<<<<<<< HEAD
 const cartFilePath = path.join(__dirname, 'data', 'cart.json');
-=======
 const campaignsFilePath = path.join(__dirname, 'data', 'campaigns.json');
 const campaignProductsFilePath = path.join(__dirname, 'data', 'campaignProducts.json');
->>>>>>> e7ab750cfc878b07278bbcba94ad7fd57d7acbf4
 
 // Configuração do multer para upload de imagens
 const storage = multer.diskStorage({
@@ -309,19 +306,6 @@ app.put('/api/users', async (req, res) => {
     res.status(500).json({ error: 'Erro ao atualizar usuário' });
   }
 });
-<<<<<<< HEAD
-=======
-       
-// Rotas de campanhas
-app.get('/api/campaigns', async (req, res) => {
-  try {
-    const campaigns = await readFile(campaignsFilePath);
-    res.json(campaigns);
-  } catch (error) {
-    res.status(500).json({ error: 'Erro ao ler campanhas' });
-  }
-});
->>>>>>> e7ab750cfc878b07278bbcba94ad7fd57d7acbf4
 
 app.get('/api/campaigns/:id', async (req, res) => {
   const { id } = req.params;
