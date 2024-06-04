@@ -18,7 +18,12 @@ import UserHelpdesk from './pages/UserHelpdesk';
 import EditProfile from './pages/EditProfile';
 import ProductList from './pages/ProductList';
 import CategoryProducts from './pages/CategoryProducts';
+<<<<<<< HEAD
+import CartPage from './pages/CartPage';
+
+=======
 import CampaignProducts from './pages/CampaignProducts';
+>>>>>>> e7ab750cfc878b07278bbcba94ad7fd57d7acbf4
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -231,6 +236,7 @@ const App = () => {
           <Route path="/user-helpdesk" element={<UserHelpdesk />} /> 
           <Route path="/edit-profile" element={<EditProfile />} /> 
           <Route path="/category/:category" element={<CategoryProducts />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </Router>
     </AuthProvider>

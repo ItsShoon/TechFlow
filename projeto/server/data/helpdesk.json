@@ -6,10 +6,10 @@
     "invoiceNumber": "lgf10",
     "description": "test1",
     "email": "gestor@techflow.pt",
-    "status": "Em Andamento",
+    "status": "Concluído",
     "currentDate": "21/05/2024",
     "notes": "teste andamento",
-    "lastUpdatedDate": "25/05/2024"
+    "lastUpdatedDate": "02/06/2024"
   },
   {
     "helpdeskType": "Reclamações",
@@ -42,8 +42,10 @@
     "invoiceNumber": "wwwww",
     "description": "wwwww",
     "email": "andre.fontes7331@gmail.com",
-    "status": "Pendente",
-    "currentDate": "23/05/2024"
+    "status": "Em Andamento",
+    "currentDate": "23/05/2024",
+    "notes": "rrr",
+    "lastUpdatedDate": "03/06/2024"
   },
   {
     "id": "arwpnuquo",
@@ -64,5 +66,25 @@
     "email": "nuno@nuno.pt",
     "status": "Pendente",
     "currentDate": "25/05/2024"
+  },
+  {
+    "id": "3rbuga27m",
+    "helpdeskType": "Suporte Técnico",
+    "equipment": "Computador",
+    "invoiceNumber": "uu",
+    "description": "uu",
+    "email": "gestor@techflow.pt",
+    "status": "Pendente",
+    "currentDate": "02/06/2024"
+  },
+  {
+    "id": "o6r8d1xuo",
+    "helpdeskType": "Suporte Técnico",
+    "equipment": "Computador",
+    "invoiceNumber": "gg",
+    "description": "ggg",
+    "email": "andre.fontes7331@gmail.com",
+    "status": "Pendente",
+    "currentDate": "03/06/2024"
   }
 ]
